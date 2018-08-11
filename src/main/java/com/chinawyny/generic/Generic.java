@@ -1,4 +1,4 @@
-package com.chinawyny.algorithm;
+package com.chinawyny.generic;
 
 public class Generic {
 

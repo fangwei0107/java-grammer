@@ -1,26 +1,34 @@
 package com.chinawyny.generic;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Generic {
+public class Generic<T, U> {
 
-    public <T> T getParam(){
-        return null;
-    }
-
-    public static<E> void rtti(List<E> list) {
-        if (list instanceof LinkedList<?>){  // 编译错误
-            // ...
-        }
+    public <T> List<T> getParam(){
+        return new ArrayList<T>();
     }
 
     public static void main(String[] args) {
-        List<Integer> li = new ArrayList<>();
-        ArrayList<Integer> ln = (ArrayList<Integer>) li;
-        Object [] strings= new String[2];
-        strings[0] ="hi";   // 插入正常
-//        strings[1] =100;    //报错，因为100不是String类型
+        List<String> aList = Arrays.asList("111","222");
+        List<? extends Object> covariantList = aList;
+        List<? super String> contravariantList = aList;
+//        covariantList.add("d"); //wrong
+        Object a = covariantList.get(0);
+        System.out.println(a);
+        contravariantList.add(1, "d"); //OK
+//        String b = contravariantList.get(1); //wrong
+        Object c = contravariantList.get(1);}
+}
+class Super {
+    void getSomething(String str){
+        System.out.println("2");
+    }
+}
+class Sub extends Super {
+
+    void getSomething(Object str) {
+        System.out.println(str);
     }
 }

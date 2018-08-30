@@ -138,8 +138,78 @@ public class OfferDemo {
         return count;
     }
 
+    private static double power(double base, int e) {
+        if (e == 0) {
+            return 1;
+        }
+
+        int exp = e;
+        if (e < 0) {
+            exp = -e;
+        }
+
+        double res = powerHelp(base, exp);
+
+        if (e < 0) {
+            res = 1 / res;
+        }
+        return res;
+    }
+
+    private static double powerHelp(double base, int exp) {
+        if (exp == 0) {
+            return 1;
+        }
+
+        if (exp == 1) {
+            return base;
+        }
+
+        double res = powerHelp(base, exp >> 1);
+
+        res *= res;
+
+        if ((exp & 0x1) == 1) {
+            res *= base;
+        }
+        return res;
+    }
+
+    private static void printDigits(int n) {
+        if (n < 1) {
+            return;
+        }
+
+        int[] arr = new int[n];
+        printDigits(0, arr);
+    }
+
+    private static void printDigits(int n, int[] arr) {
+
+        for(int i = 0; i < 10; i++) {
+            if(n != arr.length) {
+                arr[n] = i;
+                printDigits(n+1, arr);
+            } else {
+                boolean isFirstNo0 = false;
+                for (int anArr : arr) {
+                    if (anArr != 0) {
+                        System.out.print(anArr);
+                        if (!isFirstNo0)
+                            isFirstNo0 = true;
+                    } else {
+                        if (isFirstNo0)
+                            System.out.print(anArr);
+                    }
+                }
+                System.out.println();
+                return ;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
-        OfferDemo demo = new OfferDemo();
-        System.out.println(demo.fibonacci(4));
+        printDigits(3);
     }
 }

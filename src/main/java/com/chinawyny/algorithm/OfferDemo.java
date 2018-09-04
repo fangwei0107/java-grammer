@@ -181,7 +181,7 @@ public class OfferDemo {
         }
 
         int[] arr = new int[n];
-        printDigits2(0, arr);
+        printDigits(0, arr);
     }
 
     private static void printDigits(int n, int[] arr) {
@@ -208,32 +208,38 @@ public class OfferDemo {
         }
 
     }
+    private static void printDigits2(int n) {
+        if (n < 1) {
+            return;
+        }
 
-    private static void printDigits2(int n, int[] arr) {
-        for (int i = 0;i < 10; i++) {
+        char[] arr = new char[n];
+        printDigits2(0, arr);
+    }
+    private static void printDigits2(int n, char[] arr) {
+
+        for (char i = '0';i <= '9';i++) {
             if (n != arr.length) {
                 arr[n] = i;
                 printDigits2(n + 1, arr);
             } else {
-                boolean isFirst0 = false;
-                for(int x : arr) {
-                    if (x !=0) {
+                boolean isFirst0 = true;
+                for (char x : arr) {
+                    if (x != '0') {
                         System.out.print(x);
-                        isFirst0 = true;
-                    } else {
-                        if (isFirst0) {
-                            System.out.print(0);
-                        }
+                        isFirst0 = false;
+                    } else if (!isFirst0) {
+                        System.out.print(x);
                     }
                 }
                 System.out.println();
                 return;
             }
-
         }
+
     }
 
     public static void main(String[] args) {
-        printDigits(3);
+        printDigits2(3);
     }
 }

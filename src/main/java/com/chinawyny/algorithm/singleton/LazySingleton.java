@@ -2,7 +2,7 @@ package com.chinawyny.algorithm.singleton;
 
 public class LazySingleton {
 
-    private static LazySingleton instance;
+    private static volatile LazySingleton instance;
 
     public static LazySingleton getInstance() {
         // 第一次检查是确保之前是一个空对象，而非空对象就不需要同步了

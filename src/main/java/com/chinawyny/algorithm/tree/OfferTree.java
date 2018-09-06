@@ -581,8 +581,8 @@ public class OfferTree {
     }
     
     public static void main(String[] args) {
-        int numbers[] = {1, 2, 3, 2, 2, 2, 5, 4, 2};
-        System.out.println(moreThanHalf(numbers));
+        
+        float a = 1L;
         
     }
     

@@ -181,7 +181,7 @@ public class OfferDemo {
         }
 
         int[] arr = new int[n];
-        printDigits2(0, arr);
+        printDigits(0, arr);
     }
 
     private static void printDigits(int n, int[] arr) {
@@ -208,209 +208,38 @@ public class OfferDemo {
         }
 
     }
+    private static void printDigits2(int n) {
+        if (n < 1) {
+            return;
+        }
 
-    private static void printDigits2(int n, int[] arr) {
-        for (int i = 0;i < 10; i++) {
+        char[] arr = new char[n];
+        printDigits2(0, arr);
+    }
+    private static void printDigits2(int n, char[] arr) {
+
+        for (char i = '0';i <= '9';i++) {
             if (n != arr.length) {
                 arr[n] = i;
                 printDigits2(n + 1, arr);
             } else {
-                boolean isFirst0 = false;
-                for(int x : arr) {
-                    if (x !=0) {
+                boolean isFirst0 = true;
+                for (char x : arr) {
+                    if (x != '0') {
                         System.out.print(x);
-                        isFirst0 = true;
-                    } else {
-                        if (isFirst0) {
-                            System.out.print(0);
-                        }
+                        isFirst0 = false;
+                    } else if (!isFirst0) {
+                        System.out.print(x);
                     }
                 }
                 System.out.println();
                 return;
             }
-
-        }
-    }
-
-    private static void reorderOddEven(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
-
-        int left = 0;
-
-        int right = arr.length - 1;
-
-        while (left < right) {
-            while (left < right && (arr[left] & 1) == 1) {
-                left++;
-            }
-
-            while (left < right && (arr[right] & 1) != 1) {
-                right--;
-            }
-            int temp = arr[left];
-            arr[left] = arr[right];
-            arr[right] = temp;
-
-        }
-    }
-
-
-    private static ListNode lastNPoint(ListNode root, int n) {
-        if (root == null || n <= 0) {
-            return null;
-        }
-        ListNode temp = root;
-        int i = 1;
-        for (;i < n; i++) {
-            if (temp == null) {
-                return null;
-            } else {
-                temp = temp.next;
-            }
-        }
-
-        if (i != n || temp == null) {
-            return null;
-        }
-        ListNode res = root;
-        while (temp.next != null) {
-            temp = temp.next;
-            res = res.next;
-        }
-
-        return res;
-
-    }
-
-    private static ListNode midNode(ListNode root) {
-
-        if (root == null || root.next == null) {
-            return root;
-        }
-
-        ListNode fast = new ListNode(0);
-        fast.next = root;
-        ListNode slow = new ListNode(0);
-        slow.next = root;
-        while (fast != null && fast.next != null) {
-            fast = fast.next;
-            fast = fast.next;
-            slow = slow.next;
-        }
-        return slow;
-    }
-
-    private static ListNode reverse(ListNode root) {
-        if (root == null || root.next == null) {
-            return root;
-        }
-
-        ListNode pre = root;
-        ListNode mid = root.next;
-        ListNode next = mid.next;
-        pre.next = null;
-
-        while (next != null) {
-            mid.next = pre;
-
-            pre = mid;
-            mid = next;
-            next = next.next;
-        }
-        mid.next = pre;
-        return mid;
-
-    }
-
-    private static ListNode merge(ListNode l1, ListNode l2) {
-        if (l1 == null) {
-            return l2;
-        }
-        if (l2 == null) {
-            return l1;
-        }
-
-        ListNode res = new ListNode(0);
-
-        ListNode temp1= l1;
-        ListNode temp2 = l2;
-        ListNode work = res;
-
-        while (temp1 != null && temp2 != null) {
-            if (temp1.val < temp2.val) {
-                work.next = temp1;
-                temp1 = temp1.next;
-            } else {
-                work.next = temp2;
-                temp2 = temp2.next;
-            }
-            work = work.next;
-        }
-
-        if (temp1 != null) {
-            work.next = temp1;
-        }
-        if (temp2 != null) {
-            work.next = temp2;
-        }
-
-        return res.next;
-    }
-
-    private static void printList(ListNode root) {
-
-        if (root == null) {
-            return;
-        }
-
-        while (root != null) {
-            System.out.print(root.val + " ");
-            root = root.next;
         }
 
     }
 
     public static void main(String[] args) {
-        ListNode n1 = new ListNode(1);
-        ListNode n2 = new ListNode(2);
-        ListNode n3 = new ListNode(3);
-        ListNode n4 = new ListNode(4);
-        n1.next = n2;
-        n3.next = n4;
-
-        ListNode res = merge(n1,n3);
-        printList(res);
-
+        printDigits2(3);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

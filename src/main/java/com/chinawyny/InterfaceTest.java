@@ -8,12 +8,4 @@ public interface InterfaceTest {
     }
     
     default void b() {}
-    
-    static void c();
-}
-
-abstract class m {
-    
-    
-    static void c();
 }
